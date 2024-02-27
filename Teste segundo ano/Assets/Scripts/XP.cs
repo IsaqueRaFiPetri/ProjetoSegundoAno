@@ -32,5 +32,15 @@ public class XP : MonoBehaviour
             posPlayer = collision.transform;
             isMagnetized = true;
         }
+        switch (collision.tag)
+        {
+            case "Player":
+                Destroy(gameObject);
+                break;
+            case "Magnetic":
+                posPlayer = collision.transform;
+                isMagnetized = true;
+                break;
+        }
     }
 }
