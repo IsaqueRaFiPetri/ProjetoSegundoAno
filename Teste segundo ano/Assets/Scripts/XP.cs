@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class XP : MonoBehaviour
 {
+    public int xpGain;
     Rigidbody2D body;
     Transform posPlayer;
     bool isMagnetized;
@@ -23,18 +24,10 @@ public class XP : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
-        if (collision.CompareTag("Magnetic"))
-        {
-            posPlayer = collision.transform;
-            isMagnetized = true;
-        }
-        switch (collision.tag)
+      switch (collision.tag)
         {
             case "Player":
+                PlayerStats.GainXp(collision.GetComponent<PlayerStats>(), xpGain);
                 Destroy(gameObject);
                 break;
             case "Magnetic":
