@@ -6,7 +6,6 @@ public class XP : MonoBehaviour
 {
     public int xpGain;
     Rigidbody2D body;
-    Transform posPlayer;
     bool isMagnetized;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +18,7 @@ public class XP : MonoBehaviour
     {
         if (isMagnetized)
         {
-            body.velocity = ((posPlayer.position - transform.position) * 2);
+            body.velocity = ((PlayerMoviment.posPlayer.position - transform.position) * 2);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +30,7 @@ public class XP : MonoBehaviour
                 Destroy(gameObject);
                 break;
             case "Magnetic":
-                posPlayer = collision.transform;
+                PlayerMoviment.posPlayer = collision.transform;
                 isMagnetized = true;
                 break;
         }
