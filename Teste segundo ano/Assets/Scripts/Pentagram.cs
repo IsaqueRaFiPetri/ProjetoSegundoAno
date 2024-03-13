@@ -23,9 +23,14 @@ public class Pentagram : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Random.Range(0, 100) <= destroyChance)
+        /*if (Random.Range(0, 100) <= destroyChance)
         {
             Destroy(collision.gameObject);
-        }
+        }*/
+    }
+
+    public void PentagramEnd()
+    {
+        gameObject.SetActive(false);
     }
 }
