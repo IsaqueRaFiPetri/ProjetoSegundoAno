@@ -45,6 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GroundWeapons
+    uniqueID: 2108343867
+    locked: 0
+  - name: Characters
+    uniqueID: 822513451
+    locked: 0
   - name: Weapons
     uniqueID: 774996163
     locked: 0

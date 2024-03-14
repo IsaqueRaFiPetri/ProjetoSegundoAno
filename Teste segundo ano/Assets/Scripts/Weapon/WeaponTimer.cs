@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponTimer : MonoBehaviour
 {
-    public GameObject weapon;
+    public UnityEvent OnTimerAttack;
+    //public GameObject weapon;
     public float timeToActivate;
     float timer;
 
@@ -31,13 +33,14 @@ public class WeaponTimer : MonoBehaviour
     IEnumerator Activate()
     {
         yield return new WaitForSeconds(timeToActivate);
-        //ActiveWeapon;
+        ActiveWeapon();
         StartCoroutine(Activate());
     }
 
     void ActiveWeapon()
     {
-        weapon.SetActive(true);
+        OnTimerAttack.Invoke();
+        //weapon.SetActive(true);
     }    
 }
 //passar uma _string_ é passivel de erro

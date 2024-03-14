@@ -14,23 +14,32 @@ public class Pentagram : MonoBehaviour
         collisor = GetComponent<BoxCollider2D>();
         spriteR = GetComponent<SpriteRenderer>();
     }
-
     // Update is called once per frame
     void Update()
     {
         
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (Random.Range(0, 100) <= destroyChance)
+        switch(collision.tag)
         {
-            Destroy(collision.gameObject);
-        }*/
+            case "Enemy":
+                Enemy enemy = collision.GetComponent<Enemy>();
+                enemy.TakeDamage(enemy.life);
+                break;
+            case "XP":
+                if (Random.Range(0, 100) <= destroyChance)
+                {
+                    Destroy(collision.gameObject);
+                }
+                break;
+        }
+        
     }
-
     public void PentagramEnd()
     {
         gameObject.SetActive(false);
     }
 }
+//collision = outro Objeto
+//collisor = o próprio objeto

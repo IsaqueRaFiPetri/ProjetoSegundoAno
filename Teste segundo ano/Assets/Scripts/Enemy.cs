@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     public float speed;
     protected Rigidbody2D body;
     public GameObject xp;
+    public bool garliczed;
 
     public void Moviment()
     {
