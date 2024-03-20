@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8282790733755649062}
   - component: {fileID: 8282790733755649051}
   - component: {fileID: 8282790733755649050}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: XP
   m_TagString: XP
   m_Icon: {fileID: 0}
