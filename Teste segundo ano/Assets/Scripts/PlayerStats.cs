@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public static int nivel;
+    public static int level = 1;
     [HideInInspector]public int xp, xpToNextLevel;
 
     // Start is called before the first frame update
@@ -23,7 +23,8 @@ public class PlayerStats : MonoBehaviour
         status.xp += xpGain;
         if(status.xp >= status.xpToNextLevel)
         {
-            PlayerStats.nivel++;
+            PlayerStats.level++;
+            HUD.instance.SetLevel();
         }
     }
 }
