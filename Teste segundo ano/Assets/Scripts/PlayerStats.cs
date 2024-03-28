@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance;
+    public int xpIncrease = 10, lifeMax = 100;
+    int life;
     public static int level = 1;
-    [HideInInspector]public int xp, xpToNextLevel;
+    public static int xp, xpToNextLevel = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instance = this;
+        life = lifeMax;
     }
 
     // Update is called once per frame
@@ -18,13 +22,30 @@ public class PlayerStats : MonoBehaviour
     {
         
     }
-    public static void GainXp(PlayerStats status, int xpGain)
+    public static void GainXp(int xpGain)
     {
-        status.xp += xpGain;
-        if(status.xp >= status.xpToNextLevel)
+        xp += xpGain;
+        HUD.instance.SetXP();
+        if(xp >= xpToNextLevel)
         {
             PlayerStats.level++;
+            xp = 0;
+            xpToNextLevel += PlayerStats.Instance.xpIncrease;
+            HUD.instance.SetXP();
             HUD.instance.SetLevel();
+            print(xp + "/" + xpToNextLevel);
         }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            life -= collision.gameObject.GetComponent<Enemy>().damage;
+        }
+        HUD.instance.SetLife();
+    }
+    public int GetLife()
+    {
+        return life;
     }
 }

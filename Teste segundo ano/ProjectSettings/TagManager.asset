@@ -54,3 +54,6 @@ TagManager:
   - name: Weapons
     uniqueID: 774996163
     locked: 0
+  - name: HUD
+    uniqueID: 1161760417
+    locked: 0

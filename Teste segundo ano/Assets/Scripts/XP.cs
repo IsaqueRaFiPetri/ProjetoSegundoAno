@@ -26,7 +26,7 @@ public class XP : MonoBehaviour
       switch (collision.tag)
         {
             case "Player":
-                PlayerStats.GainXp(collision.GetComponent<PlayerStats>(), xpGain);
+                PlayerStats.GainXp(xpGain);
                 Destroy(gameObject);
                 break;
             case "Magnetic":

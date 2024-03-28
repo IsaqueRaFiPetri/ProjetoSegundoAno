@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
 {
     public int life;
     public float speed;
+    public int damage;
     protected Rigidbody2D body;
     public GameObject xp;
     public bool garliczed;
