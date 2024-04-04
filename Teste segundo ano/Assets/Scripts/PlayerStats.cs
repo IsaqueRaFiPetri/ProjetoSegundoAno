@@ -12,7 +12,9 @@ public class PlayerStats : MonoBehaviour
     public static int luck;
     public static int level = 1;
     public static int xp, xpToNextLevel = 5;
-
+    public Transform weapons;
+    
+    public UnityEvent OnLevelUp;
     public UnityEvent OnPause, OnUnpause;
     // Start is called before the first frame update
     void Awake()
@@ -49,9 +51,23 @@ public class PlayerStats : MonoBehaviour
             xpToNextLevel += PlayerStats.Instance.xpIncrease;
             HUD.instance.SetXP();
             HUD.instance.SetLevel();
-            print(xp + "/" + xpToNextLevel);
+            PlayerStats.Instance.OnLevelUp.Invoke();
+            //print(xp + "/" + xpToNextLevel);
         }
     }
+
+    public void SetPause()
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))

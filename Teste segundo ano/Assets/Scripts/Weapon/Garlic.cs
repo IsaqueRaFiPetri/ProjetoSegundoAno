@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Garlic : MonoBehaviour
+public class Garlic : WeaponBase
 {
     float timer;
     public float waveRate;

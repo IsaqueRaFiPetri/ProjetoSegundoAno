@@ -20,9 +20,12 @@ public class WeaponsChoiceMenu : MonoBehaviour
             int randomNumber = Random.Range(0, weapons.Count);
             choicedWeapons[i] = weapons[randomNumber];
             weapons.RemoveAt(randomNumber);
-            weaponName[i].text = choicedWeapons[i].name;
+            weaponName[i].text = choicedWeapons[i].name;                  
             if(i == 2)
             {
+                if (PlayerStats.luck == 0)
+                    return;
+
                 if(Random.Range(0,100) < 1 - 1/PlayerStats.luck)
                 {
                     OnLuck.Invoke();
@@ -35,9 +38,10 @@ public class WeaponsChoiceMenu : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WeaponsChoosed(int id)
     {
-        
+        Instantiate(choicedWeapons[id], PlayerStats.Instance.weapons);
+        PlayerWeapons.Instance.weapons.Add(choicedWeapons[id]);
     }
 }
+//o IF pode ir sem as chaves, porem ele so vai ler sa proxima linha

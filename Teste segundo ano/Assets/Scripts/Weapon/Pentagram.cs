@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pentagram : MonoBehaviour
+public class Pentagram : WeaponBase
 {
     BoxCollider2D collisor;
     SpriteRenderer spriteR;
