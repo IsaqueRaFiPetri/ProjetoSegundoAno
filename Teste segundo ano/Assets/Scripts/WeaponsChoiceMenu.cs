@@ -40,8 +40,30 @@ public class WeaponsChoiceMenu : MonoBehaviour
 
     public void WeaponsChoosed(int id)
     {
-        Instantiate(choicedWeapons[id], PlayerStats.Instance.weapons);
-        PlayerWeapons.Instance.weapons.Add(choicedWeapons[id]);
+        if (PlayerWeapons.Instance.weapons.Count == 0)
+        {
+            Instantiate(choicedWeapons[id], PlayerStats.Instance.weapons);
+            PlayerWeapons.Instance.weapons.Add(choicedWeapons[id]);
+            return;
+        }
+        for (int i = 0; i < PlayerWeapons.Instance.weapons.Count; i++)
+        {
+            if (PlayerWeapons.Instance.weapons[i].name.Equals(choicedWeapons[id].name))
+            {//achou a arma na lista já
+                print("foi coletado já");
+                break;
+            }
+            else
+            {//caso não seja a arma certa
+                if(i == PlayerWeapons.Instance.weapons.Count - 1)
+                {//caso não seja a arma certa e esteja no último elemento da lista
+                    Instantiate(choicedWeapons[id], PlayerStats.Instance.weapons);
+                    PlayerWeapons.Instance.weapons.Add(choicedWeapons[id]);
+                    break;
+                }
+            }
+        }
+        
     }
 }
 //o IF pode ir sem as chaves, porem ele so vai ler sa proxima linha
