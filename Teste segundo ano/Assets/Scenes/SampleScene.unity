@@ -721,8 +721,8 @@ Transform:
   m_GameObject: {fileID: 533799988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.004, y: 0.36, z: 0}
-  m_LocalScale: {x: 0.37999657, y: 0.37999657, z: 0.37999657}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 986254926}
   m_RootOrder: 1
@@ -1657,6 +1657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   weapon: {fileID: 726078409}
+  player: {fileID: 533799993}
+  animator: {fileID: 533799994}
 --- !u!50 &986254928
 Rigidbody2D:
   serializedVersion: 4

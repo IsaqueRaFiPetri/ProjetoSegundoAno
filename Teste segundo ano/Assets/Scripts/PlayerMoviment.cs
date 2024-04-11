@@ -10,8 +10,10 @@ public class PlayerMoviment : MonoBehaviour
     float vertical;
 
     public Transform weapon;
+    public Transform player;
     public static Transform posPlayer;
     float direction;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +26,15 @@ public class PlayerMoviment : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+
+        animator.SetBool("walking", horizontal != 0 || vertical != 0);
+        
         if (horizontal != 0) 
         {
             direction = horizontal;
         }
         weapon.localScale = new Vector2(direction, weapon.localScale.y);
+        player.localScale = new Vector2(direction, player.localScale.y);
     }
 
     private void FixedUpdate()          //atualiza a taxa fixa
@@ -36,3 +42,4 @@ public class PlayerMoviment : MonoBehaviour
         body.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
 }
+//https://www.youtube.com/watch?v=hkaysu1Z-N8 - para a animacao da movimentacao
