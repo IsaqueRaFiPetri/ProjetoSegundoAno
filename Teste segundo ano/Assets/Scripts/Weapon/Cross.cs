@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Cross : WeaponBase
 {
+    public int damage;
+    public int speed;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,6 @@ public class Cross : WeaponBase
     // Update is called once per frame
     void Update()
     {
-        
+        FindClosest.FindClosestEnemy();
     }
 }

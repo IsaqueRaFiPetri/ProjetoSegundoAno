@@ -11,10 +11,19 @@ public abstract class Enemy : MonoBehaviour
     protected Rigidbody2D body;
     public GameObject xp;
     public bool garliczed;
+    public SpriteRenderer sprite;
 
     public void Moviment()
     {
         body.velocity = (PlayerMoviment.posPlayer.position - transform.position) * speed /10;
+        if(transform.position.x < PlayerMoviment.posPlayer.position.x)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
     }
     public void TakeDamage(int damage)
     {
