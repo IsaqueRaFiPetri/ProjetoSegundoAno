@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 2187742263
+    locked: 0
   - name: GroundWeapons
     uniqueID: 2108343867
     locked: 0
