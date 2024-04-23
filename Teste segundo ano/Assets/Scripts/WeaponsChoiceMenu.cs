@@ -7,12 +7,16 @@ using UnityEngine.Events;
 
 public class WeaponsChoiceMenu : MonoBehaviour
 {
+    public static WeaponsChoiceMenu instance;
     public TMP_Text[] weaponName = new TMP_Text[4];
     GameObject[] choicedWeapons = new GameObject[4];
     public UnityEvent OnLuck;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void ChooseWeapons()
     {
         List<GameObject> weapons = Database.Instance.weapons.ToList();
         for(int i = 0; i < weaponName.Length; i++)

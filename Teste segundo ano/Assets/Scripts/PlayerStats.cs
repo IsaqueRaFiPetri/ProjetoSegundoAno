@@ -52,6 +52,7 @@ public class PlayerStats : MonoBehaviour
             HUD.instance.SetXP();
             HUD.instance.SetLevel();
             PlayerStats.Instance.OnLevelUp.Invoke();
+            WeaponsChoiceMenu.instance.ChooseWeapons();
             //print(xp + "/" + xpToNextLevel);
         }
     }
