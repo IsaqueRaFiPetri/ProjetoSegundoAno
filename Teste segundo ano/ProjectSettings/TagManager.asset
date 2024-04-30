@@ -8,6 +8,7 @@ TagManager:
   - Magnet
   - Magnetic
   - Enemy
+  - MagicFire
   layers:
   - Default
   - TransparentFX

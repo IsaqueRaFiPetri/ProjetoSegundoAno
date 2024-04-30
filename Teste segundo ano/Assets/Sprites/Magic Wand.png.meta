@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 512
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,7 +103,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Magic Wand_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 377
+        width: 570
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1edfeb2f23499c84a940137cd03872b3
+      internalID: 505841720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Magic Wand_3
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 377
+        width: 571
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c6fb57bbc4d03740be30d94879837ac
+      internalID: 603228326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Magic Wand_6
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 386
+        width: 568
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 303d00cdd689aff47989eb45d81e501a
+      internalID: 1242031068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +177,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Magic Wand_15: 456557004
+      Magic Wand_5: -1140741132
+      Magic Wand_7: 970585672
+      Magic Wand_0: 2082158123
+      Magic Wand_13: 1749574411
+      Magic Wand_6: 1242031068
+      Magic Wand_12: -1308810524
+      Magic Wand_4: -1291634485
+      Magic Wand_16: 342289673
+      Magic Wand_17: -2143084770
+      Magic Wand_2: 505841720
+      Magic Wand_10: -1169745323
+      Magic Wand_11: 470521180
+      Magic Wand_9: -669150563
+      Magic Wand_3: 603228326
+      Magic Wand_14: -737416760
+      Magic Wand_1: 1941187788
+      Magic Wand_8: -790676909
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

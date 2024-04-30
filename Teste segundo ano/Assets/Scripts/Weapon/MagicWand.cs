@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class MagicWand : WeaponBase
 {
-    public int damage;
-    public int speed;
+    
     public GameObject objToFire;
-    float timer;
-    public float cooldown;
+    
+    public float minCool = 0.1f;
+    public float maxCool = 2.0f;
+    public Transform[] spawnPoints = new Transform[8];
 
     void Start()
     {
-        timer = Time.time;
+        StartCoroutine(SpawnMagic());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnMagic()
     {
-        FindClosest.FindClosestEnemy();
-        if (timer == cooldown)
+        while (true)
         {
-            timer = 0;
+            float cooldown = Random.Range(minCool, maxCool);
+            yield return new WaitForSeconds(cooldown);
 
+            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            Transform spawnPoint = spawnPoints[spawnIndex];
+
+            Instantiate(objToFire, spawnPoint.position, spawnPoint.rotation);
         }
     }
 }

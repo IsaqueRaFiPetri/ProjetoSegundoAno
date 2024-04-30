@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class Cross : WeaponBase
 {
-    public int damage;
-    public int speed;
-    public GameObject crossItem;
-    public Rigidbody2D body;
-    private float weaponCooldown;
-   
-    // Start is called before the first frame update
+    public GameObject objToFire;
+
+    public float minCool = 0.1f;
+    public float maxCool = 2.0f;
+    public Transform[] spawnPoints = new Transform[8];
+
     void Start()
     {
-        weaponCooldown = Time.deltaTime;
+        StartCoroutine(SpawnMagic());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnMagic()
     {
-        if(weaponCooldown == 2.0f)
+        while (true)
         {
-            FindClosest.FindClosestEnemy();
-            Shoot();
-        }
-        
-    }
+            float cooldown = Random.Range(minCool, maxCool);
+            yield return new WaitForSeconds(cooldown);
 
-    void Shoot()
-    {
-        Instantiate(crossItem);
+            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            Transform spawnPoint = spawnPoints[spawnIndex];
+
+            Instantiate(objToFire, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 }
