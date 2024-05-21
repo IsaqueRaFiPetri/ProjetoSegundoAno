@@ -14,13 +14,13 @@ public class PlayerLOL : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
         if(agent.remainingDistance <= agent.stoppingDistance)
         {
             print("CHEGUEI"); 
