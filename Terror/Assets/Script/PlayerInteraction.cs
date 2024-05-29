@@ -19,7 +19,11 @@ public class PlayerInteraction : MonoBehaviour
         Debug.DrawRay(cam.position, cam.forward * handDistance, Color.blue);
         if (Physics.Raycast(cam.position, cam.forward, out hit, handDistance))
         {
-            print(hit.collider.name);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                hit.collider.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
+                //print(hit.collider.name);
+            }
         }
     }
 }
