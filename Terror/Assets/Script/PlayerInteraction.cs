@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public static PlayerInteraction instance;
     Transform cam;
     public float handDistance = 3;
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         cam = Camera.main.transform;
     }
 
