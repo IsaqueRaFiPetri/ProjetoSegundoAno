@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public enum MonsterAI
 {
@@ -10,18 +11,24 @@ public enum MonsterAI
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    public UnityEvent OnPatrolling, OnChasing, OnBreak;
     public Transform vision, playerPos;
     RaycastHit hit;
     public Transform[] patrolPoints; //array - não muda dentro do jogo
     NavMeshAgent agent;
     MonsterAI monsterAI;
-    bool isWaiting;
+    public bool canPatrol;
     
     int lastPoint; //Patrulha aleatória, impede repetir o ponto
     int patrolPoint; //Ponte de patrulha atual, para o de sequencia
 
     void Start()
     {
+        /*OnBreak.AddListener(delegate
+        {
+            (StartCoroutine(GiveaBreak()));
+        }); //coroutine para esperar*/
+
         agent = GetComponent<NavMeshAgent>();
         //SetDestiny();
         //SetRandomFixedPointDestiny();
@@ -33,16 +40,11 @@ public class Enemy : MonoBehaviour
         switch (monsterAI)
         {
             case MonsterAI.Break: //modod de aguardo
-                if (isWaiting) //se estiver true nem lê o rsto
-                    return; //para previnir de ativar duas vezes abaixo
-
-                StartCoroutine(GiveaBreak()); //coroutine para esperar
                 break;
             case MonsterAI.Patrolling:
-                isWaiting = false; //desativando a booleana para depois
                 if(agent.stoppingDistance >= agent.remainingDistance) 
                 { //se estiver chegando ao destino, espere
-                    monsterAI = MonsterAI.Break;
+                    SetMonsterAI(MonsterAI.Break);
                 }
                 break;
             case MonsterAI.Chasing:
@@ -58,8 +60,7 @@ public class Enemy : MonoBehaviour
             {
                 if (monsterAI.Equals(MonsterAI.Chasing)) //se bão for o modo CHASING
                 {
-                    monsterAI = MonsterAI.Chasing; //Mude para Chasing
-                    isWaiting = false; //Cancela o Modo de Espera
+                    SetMonsterAI(MonsterAI.Chasing); //Mude para Chasing
                     StopAllCoroutines(); //Para a Coroutine do modo de espera
                 }
                 agent.SetDestination(playerPos.position);
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour
             else
             { //se perder o player de vista
                 if(monsterAI.Equals(MonsterAI.Chasing))
-                    monsterAI = MonsterAI.Break; //caso ainda esteja caçando , cancela
+                    SetMonsterAI(MonsterAI.Break); //caso ainda esteja caçando , cancela
             }
             
             print(hit.collider.name);
@@ -76,15 +77,21 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator GiveaBreak()
     {
-        isWaiting = true; //Booleano que impede a dupla ativação
         yield return new WaitForSeconds(2); //tempo de espera
-        NextPointFixerdPatrol(); //setar um novo destino e começar a patrulha
+        if (canPatrol)
+        {
+            NextPointFixerdPatrol();
+        }
+        else
+        {
+            NextPointFixerdPatrol(); //setar um novo destino e começar a patrulha
+        }
     }
 
     void SetDestiny() //anda para um ponto aleatório
     {
         agent.SetDestination(SetRandomNavTarget());
-        monsterAI = MonsterAI.Patrolling;
+        SetMonsterAI(MonsterAI.Patrolling);
     }
     void SetRandomFixedPointDestiny() //aleatopriza um dos pontos de patrulha
     {
@@ -96,12 +103,12 @@ public class Enemy : MonoBehaviour
         lastPoint = random;
         print(random);
         agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Length)].position);
-        monsterAI = MonsterAI.Patrolling;
+        SetMonsterAI(MonsterAI.Patrolling);
     }
     void NextPointFixerdPatrol()
     {
         agent.SetDestination(patrolPoints[patrolPoint].position);
-        monsterAI = MonsterAI.Patrolling;
+        SetMonsterAI(MonsterAI.Patrolling);
         patrolPoint++;
         if(patrolPoint >= patrolPoints.Length)
         {
@@ -118,5 +125,27 @@ public class Enemy : MonoBehaviour
         NavMesh.SamplePosition(randomPosition, out hit, 5, 1);
         Vector3 finalPosition = hit.position;
         return finalPosition;
+    }
+    public void SetMonsterAI(MonsterAI state)
+    {
+        monsterAI = state;
+        switch (monsterAI)
+        {
+            case MonsterAI.Break:
+                StartCoroutine(GiveaBreak()); //coroutine para esperar
+                OnBreak.Invoke();
+                break;
+            case MonsterAI.Patrolling:
+                OnPatrolling.Invoke();
+                break;
+            case MonsterAI.Chasing:
+                OnChasing.Invoke();
+                break;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        agent.SetDestination(other.transform.position);
+        SetMonsterAI(MonsterAI.Patrolling);
     }
 }

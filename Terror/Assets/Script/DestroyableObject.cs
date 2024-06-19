@@ -6,6 +6,7 @@ public class DestroyableObject : InteractableObject
 {
     protected override void Interact()
     {
+        PlayerInteraction.instance.OnInteractionEffected.Invoke();
         Destroy(gameObject);
         //StartCoroutine(NomeDaCoroutine());
     }

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public UnityEvent OnInteractionEffected;
     public static PlayerInteraction instance;
     Transform cam;
     public float handDistance = 3;
