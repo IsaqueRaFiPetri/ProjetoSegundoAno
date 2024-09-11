@@ -127,7 +127,7 @@ Material:
     - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepWaterColor: {r: 0.06763971, g: 0.11615721, b: 0.15094337, a: 1}
+    - _DeepWaterColor: {r: 0.81960785, g: 0.15048298, b: 0.13725488, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _FogColor: {r: 1, g: 1, b: 1, a: 1}
