@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
             sprite.flipX = false;
         }
     }
-    public void TakeDamage(int damage)
+    /*public void TakeDamage(int damage)
     {
         life -= damage;
         if(life <= 0)
@@ -36,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
             }
             Destroy(gameObject);
         }
-    }
+    }*/
 }
 //para a classe ser pai, ele tem que ser uma classe _abstract_
 // se quiser que os inimigos virem o Flash, multiplique a velocidade deles

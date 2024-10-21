@@ -34,7 +34,7 @@ public class MagicWandFire : MonoBehaviour
             {
                 finalDamage *= 2;
             }
-            collision.GetComponent<Enemy>().TakeDamage(finalDamage);
+            collision.GetComponent<IDamagable>().TakeDamage(finalDamage);
             print(finalDamage);
 
             if (collision.CompareTag("Enemy"))

@@ -21,20 +21,19 @@ public class Pentagram : WeaponBase
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch(collision.tag)
+        if (collision.TryGetComponent<IDamagable>(out IDamagable target))
         {
-            case "Enemy":
-                Enemy enemy = collision.GetComponent<Enemy>();
-                enemy.TakeDamage(enemy.life);
-                break;
-            case "XP":
-                if (Random.Range(0, 100) <= destroyChance)
-                {
-                    Destroy(collision.gameObject);
-                }
-                break;
+            target.TakeDamage(target.GetLife());
         }
-        
+        else
+        {
+            if (collision.CompareTag("XP"))
+            {
+                if (Random.Range(0, 100) <= destroyChance)
+                    return;
+            }
+            Destroy(collision.gameObject);
+        }        
     }
     public void PentagramEnd()
     {

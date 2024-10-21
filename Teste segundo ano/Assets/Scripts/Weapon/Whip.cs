@@ -19,15 +19,14 @@ public class Whip : WeaponBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if(collision.TryGetComponent<IDamagable>(out IDamagable target))
         {
             int finalDamage = Random.Range(damageMin, damegMax + 1);
             if (Random.Range(0, 100) <= 20)
             {
                 finalDamage *= 2;
             }
-            collision.GetComponent<Enemy>().TakeDamage(finalDamage);
-            print(finalDamage);
+            target.TakeDamage(finalDamage);
         }
     }
 }

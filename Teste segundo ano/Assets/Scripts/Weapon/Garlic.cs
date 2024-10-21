@@ -6,7 +6,7 @@ public class Garlic : WeaponBase
 {
     float timer;
     public float waveRate;
-    List<Enemy> enemies = new List<Enemy>(); // -> lista
+    [SerializeField] List<IDamagable> enemies = new List<IDamagable>(); // -> lista
     //Enemy[] enemiess; -> array
     public int damage;
 
@@ -22,7 +22,7 @@ public class Garlic : WeaponBase
         timer = Time.deltaTime;
         if(timer >= waveRate)
         {
-            foreach(Enemy enemy in enemies) //mais otimisado
+            foreach(IDamagable enemy in enemies) //mais otimisado
             {
                 enemy.TakeDamage(damage);
             }
@@ -35,17 +35,17 @@ public class Garlic : WeaponBase
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        enemies.Add(collision.GetComponent<Enemy>());
-        if (!enemies[enemies.Count - 1].garliczed)
+        enemies.Add(collision.GetComponent<IDamagable>());
+        /*if (!enemies[enemies.Count - 1].garliczed)
         {
             enemies[enemies.Count - 1].garliczed = true;
             enemies[enemies.Count - 1].TakeDamage(damage);
-        }
+        }*/
         //collision.AddComponent<GarlicEffect>();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        enemies.Remove(collision.GetComponent<Enemy>());
+        enemies.Remove(collision.GetComponent<IDamagable>());
         //enemies[2] = null; -> para array
         //Destroy(collision.GetComponent<GarlicEffect>();
     }

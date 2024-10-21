@@ -34,7 +34,7 @@ public class CrossFire : MonoBehaviour
             {
                 finalDamage *= 2;
             }
-            collision.GetComponent<Enemy>().TakeDamage(finalDamage);
+            collision.GetComponent<IDamagable>().TakeDamage(finalDamage);
             print(finalDamage);
 
             if (Time.time == 10)
