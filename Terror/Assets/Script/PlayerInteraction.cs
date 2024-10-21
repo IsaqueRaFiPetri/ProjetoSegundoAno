@@ -25,7 +25,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                hit.collider.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
+                if(hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+                    interactable.Interact();
+
+                //hit.collider.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
                 //print(hit.collider.name);
             }
         }

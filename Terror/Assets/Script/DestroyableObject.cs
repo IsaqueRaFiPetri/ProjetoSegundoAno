@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyableObject : InteractableObject
+public class DestroyableObject : MonoBehaviour, IInteractable
 {
-    protected override void Interact()
+    public void Interact()
     {
         PlayerInteraction.instance.OnInteractionEffected.Invoke();
         Destroy(gameObject);
-        //StartCoroutine(NomeDaCoroutine());
     }
 
     // Start is called before the first frame update
